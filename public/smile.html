@@ -1,0 +1,63 @@
+<html>
+    <script src="webcam.js"></script>
+    <script type="text/javascript" src="facepp-sdk.min.js"></script>
+      <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script
+
+    <div id="my_camera" style="width:320px; height:240px;"></div>
+    <div id="my_result"></div>
+
+
+
+     <script src="webcam.js"></script>
+
+    <div id="my_camera" style="width:320px; height:240px;"></div>
+    <div id="my_result"></div>
+
+    <script language="JavaScript">
+        Webcam.attach( '#my_camera' );
+
+        function take_snapshot() {
+            Webcam.snap( function(data_uri) {
+                document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+
+                var string = data_uri.slice(data_uri.indexOf(",")+1);
+                
+
+                analyze(atob(string));
+            } );
+
+        }
+
+       var api = new FacePP('543e17aee3b18f50d17a73136e95dc7c',
+                     'A16qFPj12SO0UPNLqd9JGZse06I25n2f',
+                     { apiURL: 'apius.faceplusplus.com' });
+
+      function analyze(data){
+        
+
+        
+        $.post('https://apius.faceplusplus.com/detection/detect', {url:'http://behappy.parseapp.com/Unknown.jpeg', api_key:'543e17aee3b18f50d17a73136e95dc7c', api_secret:'A16qFPj12SO0UPNLqd9JGZse06I25n2f'}, console.log);
+
+            /**
+               function(err, result) {
+                if (err) {
+                  console.log(err);
+                  $('#response').text(err );
+                  return;
+                }
+                $('#response').text(JSON.stringify(result));
+              });
+
+**/
+        }
+
+
+    </script>
+
+    <a href="javascript:void(take_snapshot())">Take Snapshot</a>
+
+
+    <pre id="response"> </pre>
+    <div id="my_result"></div>
+  </body>
+</html>
